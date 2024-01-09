@@ -60,7 +60,7 @@ function Home(props) {
                     Released: {movie.releaseDate}
                   </p>
                   <p className="text text-17 font-extrabold">
-                    Rating: {movie.rating}
+                    Rating: {movie.averageRating}
                   </p>
                 </div>
               );
