@@ -244,6 +244,7 @@ body {
   padding: 12px;
   margin-top: 30px;
   width: 100%;
+  outline: none;
 }
 .close {
   position: absolute;

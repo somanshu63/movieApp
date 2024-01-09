@@ -1,26 +1,78 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
+import { context } from "./context";
+import { baseUrl } from "../utils";
+import { useHistory } from "react-router-dom";
 
-function AddReview(props) {
+function AddReview() {
+  let contextData = useContext(context);
+  const history = useHistory();
   const [selectMovie, setSelectMovie] = useState("");
   const [name, setName] = useState("");
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
 
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch(baseUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .then((movies) => setMovies(movies.movies));
+  }, []);
+
   let checkInput = () => {
     if (!selectMovie || !rating || !comment) {
       setError("all fields are required*");
     } else {
-      props.toggle("addReview");
+      addReview();
+      contextData.toggle("addReview");
     }
   };
+
+  let addReview = () => {
+    fetch(`${baseUrl}${selectMovie}/reviews`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        rating: rating,
+        comment: comment,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("can't add new review");
+        }
+        return res.json();
+      })
+      .then((review) => {
+        history.push(review.review.movie.slug);
+        window.location.reload();
+      })
+      .catch((errors) => {
+        setError(errors.error);
+      });
+  };
+
   return (
     <div className="addMovie">
       <div className="addMovieBox">
         <div
           onClick={() => {
-            props.toggle("addReview");
+            contextData.toggle("addReview");
           }}
           className="closeReview"
         >
@@ -37,7 +89,9 @@ function AddReview(props) {
           value={selectMovie}
         >
           <option value="">Select a movie</option>
-          <option value="sample">sample</option>
+          {movies?.map((movie) => {
+            return <option value={movie.slug}>{movie.name}</option>;
+          })}
         </select>
         <input
           onChange={(e) => {

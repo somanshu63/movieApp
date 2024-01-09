@@ -1,24 +1,57 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoClose } from "react-icons/io5";
+import { baseUrl } from "../utils";
+import { useHistory } from "react-router-dom";
+import { context } from "./context";
 
 function AddMovie(props) {
+  let contextData = useContext(context);
+
   const [movieName, setMovieName] = useState("");
   const [movieReleaseDate, setMovieReleaseDate] = useState("");
   const [error, setError] = useState("");
-
+  const history = useHistory();
   let checkInput = () => {
     if (!movieName || !movieReleaseDate) {
       setError("all fields are required*");
     } else {
-      props.toggle("addMovie");
+      addMovie();
+      contextData.toggle("addMovie");
     }
   };
+
+  let addMovie = () => {
+    fetch(`${baseUrl}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: movieName,
+        releaseDate: movieReleaseDate,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("can't add new movie");
+        }
+        return res.json();
+      })
+      .then((movie) => {
+        history.push(movie.movie.slug);
+        window.location.reload();
+      })
+      .catch((errors) => {
+        setError(errors.error);
+      });
+  };
+
   return (
     <div className="addMovie">
       <div className="addMovieBox">
         <div
           onClick={() => {
-            props.toggle("addMovie");
+            contextData.toggle("addMovie");
           }}
           className="close"
         >

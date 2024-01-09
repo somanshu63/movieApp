@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { context } from "./context";
+
 function Header(props) {
+  let contextData = useContext(context);
+
   return (
     <div className="flex spaceBetween header px-6 py-4">
-      <p className="text text-lg">MOVIECRITIC</p>
+      <a href="/" className="text text-lg">
+        MOVIECRITIC
+      </a>
       <div>
         <button
           onClick={() => {
-            props.toggle("addMovie");
+            contextData.toggle("addMovie");
           }}
           className="px-4 mr-4 py-2 text-base bg-white rounded border-2 inputBorderColor purple"
         >
@@ -14,7 +20,7 @@ function Header(props) {
         </button>
         <button
           onClick={() => {
-            props.toggle("addReview");
+            contextData.toggle("addReview");
           }}
           className="px-4 py-2 text-base border-2 purpleBorderColor rounded text-white purpleBg"
         >
