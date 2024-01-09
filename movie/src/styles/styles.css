@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", sans-serif;
+  font-family: "Lato", sans-serif;
+}
+:root {
+  --purple: #6969f5;
+  --header: #e3e8ed;
+  --text: #293845;
+  --movieBg: #e0defd;
+  --addMovieBtnBorder: #b5b4ef;
+  --reivewBorder: #c3cfd9;
+  --footer: #ced8e0;
+  --inputBorder: #c5ced6;
+}
+.purple {
+  color: var(--purple);
+}
+.purpleBorderColor {
+  border-color: var(--purple);
+}
+.purpleBg {
+  background-color: var(--purple);
+}
+.header {
+  background-color: var(--header);
+}
+.text {
+  color: var(--text);
+}
+.movieBg {
+  background-color: var(--movieBg);
+}
+.addMovieBtnBorderColor {
+  border-color: var(--addMovieBtnBorder);
+}
+.reviewBorderColor {
+  border-color: var(--reivewBorder);
+}
+.inputBorderColor {
+  border-color: var(--inputBorder);
+}
+.footer {
+  background-color: var(--footer);
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.spaceBetween {
+  justify-content: space-between;
+}
+.mtb16lr32 {
+  margin: "16px 32px";
+}
+.ptb16lr32 {
+  padding: 16px 32px;
+}
+.text-42 {
+  font-size: 42px;
+}
+.searchInput {
+  border: 2px solid var(--purple);
+}
+.text-22 {
+  font-size: 22px;
+}
+.text-17 {
+  font-size: 17px;
+}
+.text-19 {
+  font-size: 17px;
+  letter-spacing: 0.3px;
+  word-spacing: 2px;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.w-30 {
+  width: 31.4%;
+}
+.mlN-30 {
+  margin-left: -24px;
+}
+.reviewBox {
+  border: 2px solid var(--reivewBorder);
+}
+.addMovie {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addMovieBox {
+  background-color: white;
+  border: 2px solid var(--inputBorder);
+  padding: 36px 30px;
+  width: 32%;
+}
+.input {
+  border: 2px solid var(--inputBorder);
+  padding: 12px;
+  margin-top: 30px;
+  width: 100%;
+  outline: none;
+}
+.close {
+  position: absolute;
+  top: 26%;
+  right: 35%;
+}
+.closeReview {
+  position: absolute;
+  top: 9%;
+  right: 35%;
+}
