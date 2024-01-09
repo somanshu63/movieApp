@@ -60,7 +60,10 @@ function Home(props) {
                     Released: {movie.releaseDate}
                   </p>
                   <p className="text text-17 font-extrabold">
-                    Rating: {movie.averageRating}
+                    Rating:{" "}
+                    {movie.averageRating > 0
+                      ? `${movie.averageRating} / 10`
+                      : `0/10`}
                   </p>
                 </div>
               );
